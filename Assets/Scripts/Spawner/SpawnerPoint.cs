@@ -7,7 +7,9 @@ public class SpawnerPoint : MonoBehaviour
     private DistanceDetection _distanceDetection;
     private bool _isSpawned = false;
 
-    public event Action<Transform> GiveSpawnCommand;
+    public event Action<SpawnerPoint> GiveSpawnCommand;
+
+    public bool IsSpawned => _isSpawned;
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class SpawnerPoint : MonoBehaviour
     {
         if (_isSpawned == false)
         {
-            GiveSpawnCommand?.Invoke(transform);
+            GiveSpawnCommand?.Invoke(this);
 
             _isSpawned = true;
         }
